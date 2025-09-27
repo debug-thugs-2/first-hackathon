@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Cafe - Fueling Code, One Cup at a Time</title>
+    
+    <!-- ESSENTIAL META TAGS ADDED FOR SEO AND SOCIAL SHARING -->
+    <meta name="description" content="Debug Cafe: The ultimate fix for your syntax and your soul. Enjoy high-quality coffee and pastries in a cozy, focus-driven environment.">
+    <meta name="keywords" content="coffee, cafe, debug, programming, coding, lo-fi, baked goods, India, Rupee, focus, workspace">
+    <meta name="author" content="Debug Cafe Team">
+
+    <!-- Canonical Link (Always points to the preferred version of the page) -->
+    <link rel="canonical" href="http://debugcafe.com/">
+
+    <!-- Open Graph / Social Media Tags (for Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://debugcafe.com/">
+    <meta property="og:title" content="Debug Cafe - Fueling Code, One Cup at a Time">
+    <meta property="og:description" content="The ultimate fix for your syntax and your soul. Order our Breakpoint Blend and Git Commit Croissants today!">
+    <meta property="og:image" content="https://placehold.co/1200x630/B57B6C/FFFFFF?text=Debug+Cafe+Code+Fuel">
+    
+    <!-- LOGO BASE64 DATA (NEW: Embedded Debug Cafe Logo) -->
+    <!-- This base64 data represents the uploaded logo image (cup with circuit board) -->
+    <script>
+        const LOGO_BASE64_SQUARE = 'data:image/png;base64,iVBORw0KGgoAAAANSUEUgAAAGYAAABmCAYAAABuWbUzzAAAABGdBTUEAALGOfPtRkwAAACBjSFJ7MWRzYXVyY2Ugdmlldz0icGFubmFzcy1pbmxpbmUgY29kZSAzMjIiIHdpZHRoPSIxMDYwIiBoZWlnaHQ9IjEyMDAiPqYcAAAAAAAAAAhJzQnL3+s/pWv6Q/9w/0tAAAAACF0UkdGY3JlYXRlZCBieSBnaW1wbmV0Ci8AAGQAGf9oAAAAA0JLRf8A/wADAP+YAAAAQklEQVR42u3BAQEAAAKEIftuDwofAAAwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwnmYqAByoV4l/AAAAAElEQVQmD9WdAQAAMKEI3v+f8x3CAAAAAQEBQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4A9wAAUAB00hYlEAAAAASUVORK5CYII='; 
+        const LOGO_BASE64_INLINE = 'data:image/png;base64,iVBORw0KGgoAAAANSUEUgAAAJgAAAAVCAYAAACFhO61AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjzTwhbQAAAAJcEhZcwAAFiYAABYmAWfGqRYAAAB5dFh0cmF3IHByb2ZpbGUgdHlwZSBhYWRvYmUAAHJlYWQgb25seQp4bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPG1lZGFkYXRhPgogIDx4bXBtZXRhIHhtbG5zPjxhZG9iZTpuczphYn0iIHg9IjAiIHdpZHRoPSIxMDYwIiBoZWlnaHQ9IjEyMDAiPqYcAAAAAAAAAAhJzQnL3+s/pWv6Q/9w/0tAAAAACF0UkdGY3JlYXRlZCBieSBnaW1wbmV0Ci8AAGQAGf9oAAAAA0JLRf8A/wADAP+YAAAAQklEQVR42u3BAQEAAAKEIftuDwofAAAwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwAAMwnmYqAByoV4l/AAAAAElEQVQmD9WdAQAAMKEI3v+f8x3CAAAAAQEBQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4A9wAAUAB00hYlEAAAAASUVORK5CYII=';
+    </script>
+    
+    <!-- FAVICONS & TOUCH ICONS (Essential for bookmarks and mobile home screens) -->
+    <link rel="shortcut icon" href="${LOGO_BASE64_SQUARE}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="${LOGO_BASE64_SQUARE}">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Tone.js for ambient cafe audio effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Load Three.js for 3D animated background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Custom styles for the Inter font and smooth scrolling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F8F4F2; 
+        }
+
+        /* --- Custom Utility Classes for Modern Design --- */
+        .card-hover-effect {
+            /* Smooth transitions for interactive elements */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent; /* Base border for clean look */
+            cursor: pointer; /* Indicate clickability */
+        }
+        .card-hover-effect:hover {
+            /* Lift effect on hover */
+            transform: translateY(-4px); 
+            /* Subtle warm shadow and accent border */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 0 8px rgba(181, 123, 108, 0.5); 
+            border-color: #B57B6C; /* New Terracotta Accent ring on hover */
+        }
+
+        /* --- Hero and Focus Glow (Refined for Warm Theme) --- */
+        .focus-glow {
+            /* Text shadow changed to soft dark shadow for better contrast on light background */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
+            /* Accent shadow for the main focus box (softened) */
+            filter: drop-shadow(0 0 10px rgba(181, 123, 108, 0.5));
+            transition: all 0.5s ease;
+        }
+
+        /* Canvas styling to cover the Hero section and ensure responsiveness */
+        #cafe-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none; /* Allows interaction with elements below the canvas */
+            filter: brightness(1.2); /* Slightly brightens the shader output */
+        }
+
+        /* NEW: Canvas styling to cover the Menu section */
+        #menu-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            opacity: 0.3; /* Keep it very subtle */
+            filter: blur(1px); /* ADDED: Subtle blur filter for ambient effect */
+        }
+
+        /* Ensure menu content (cards) are above the canvas */
+        #menu .content-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Starfield Animation Styles (HIDDEN - replaced by Three.js) */
+        .stars {
+            display: none; 
+        }
+
+        /* Custom spinner for API loading */
+        .loader {
+            border-top-color: #B57B6C;
+            border-left-color: #B57B6C;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* New custom class for the flavor profile modal */
+        #flavor-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* NEW: Custom accent color for the Protocols section */
+        .accent-red-orange {
+            background-color: #D6452C; /* Deep Red-Orange/Terracotta */
+            color: #F8F4F2; /* Cream text for contrast */
+        }
+
+        /* Custom icon styling for Protocols section */
+        .protocol-icon-light {
+            color: #402E2A; /* Rich Coffee Brown */
+            background-color: #F8F4F2; /* Cream */
+        }
+        .protocol-icon-dark {
+            color: #D6452C; /* Red-Orange */
+            background-color: #F8F4F2; /* Cream */
+        }
+
+        /* --- CELEBRATION PARTICLE STYLES (NEW) --- */
+        #celebration-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: celebrate 1.5s ease-out forwards;
+        }
+
+        @keyframes celebrate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- NEW SIDEBAR STYLING (ATTRACTIVE REVAMP) --- */
+
+        #sidebar-menu {
+            overflow-y: auto; 
+            scrollbar-width: thin;
+            scrollbar-color: #B57B6C #EFEBE9; 
+            /* NEW: Animated Gradient Background */
+            background: linear-gradient(-45deg, #EFEBE9, #F8F4F2, #EFEBE9);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #sidebar-menu::-webkit-scrollbar {
+            width: 8px;
+        }
+        #sidebar-menu::-webkit-scrollbar-thumb {
+            background-color: #B57B6C;
+            border-radius: 10px;
+            border: 2px solid #EFEBE9;
+        }
+        #sidebar-menu::-webkit-scrollbar-track {
+            background: #EFEBE9;
+        }
+
+        .sidebar-link {
+            /* General link styling */
+            display: flex; /* Added for icon alignment */
+            align-items: center; /* Added for icon alignment */
+            padding: 0.75rem 1rem; 
+            font-size: 1.125rem; 
+            font-weight: 500; 
+            color: #402E2A; 
+            transition: all 0.3s ease; /* Increased transition time */
+            border-radius: 0.5rem; 
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Soft white text shadow */
+        }
+
+        .sidebar-link:hover {
+            /* Enhanced hover effect with accent color */
+            background-color: #D6452C; /* Bold Red-Orange */
+            color: #F8F4F2; /* Cream text */
+            transform: translateX(6px); /* More pronounced slide */
+            box-shadow: 0 5px 15px rgba(214, 69, 44, 0.4); /* Accent shadow */
+            text-shadow: none; /* Remove shadow on white text */
+        }
+        
+        .sidebar-link:hover .icon-base {
+             color: #F8F4F2; /* Change icon to cream on hover */
+        }
+
+        .sidebar-separator {
+            /* Custom separator style */
+            height: 1px;
+            background-color: #B57B6C; /* Accent line */
+            margin: 0.75rem 0;
+        }
+
+        /* Style the 'Order' link differently as a CTA */
+        .sidebar-cta {
+            background-color: #B57B6C; /* accent-warm */
+            color: #F8F4F2; /* text-white */
+            font-weight: 700; 
+            margin-top: 1rem;
+            transform: scale(1.02); /* Slightly larger */
+            justify-content: center;
+        }
+        .sidebar-cta:hover {
+            background-color: #D6452C; /* Bold Red-Orange on hover */
+            transform: scale(1.05);
+        }
+        
+        .icon-base {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            color: #B57B6C; /* Muted Terracotta icon color */
+            transition: color 0.3s ease;
+        }
+        
+        /* NEW: DC Symbol Styling */
+        .dc-symbol {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem; /* Same as logo image for alignment */
+            height: 3rem; /* Same as logo image for alignment */
+            background-color: #D6452C; /* Bold accent color for impact */
+            color: #F8F4F2; /* Cream text */
+            font-size: 1.5rem;
+            font-weight: 900; /* Extra bold */
+            border-radius: 0.5rem; /* Match card rounding */
+            margin-right: 0.5rem;
+            box-shadow: 0 0 8px rgba(214, 69, 44, 0.5); /* Subtle glow */
+        }
+        
+        /* Adjust logo container to fit new DC symbol + Image + Name */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // New Warm Palette
+                        'bg-primary': '#F8F4F2',  /* Soft Cream Main Background */
+                        'bg-secondary': '#EFEBE9', /* Ivory/Pale Tan Card Background */
+                        'text-default': '#402E2A', /* Rich Coffee Brown Text */
+                        'accent-warm': '#B57B6C',  /* Muted Terracotta Accent */
+                        'accent-hover': '#C79C90', /* Lighter Terracotta for Hover */
+                    },
+                    boxShadow: {
+                        'warm-glow': '0 0 15px rgba(181, 123, 108, 0.4)',
+                    }
+                }
+            }
+        }
+
+        // --- GEMINI API CONSTANTS (REQUIRED) ---
+        const API_KEY = ""; 
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        
+        // --- MENU DATA (CENTRALIZED) ---
+        const menuItems = [
+            // Original 9 Items
+            { id: 'item-1', name: '404 Espresso', price: 280, description: "A double shot of pure, undiluted focus. When you can't find the solution, this is your primary key.", imgText: '☕' }, // Coffee
+            { id: 'item-2', name: 'Syntax Error Latte', price: 440, description: "A perfect blend of milk, espresso, and flavor syrup. Tastes complex, but runs perfectly.", imgText: '🥛' }, // Milk/Latte
+            { id: 'item-3', name: 'Infinite Loop Cold Brew', price: 480, description: "Steeped for 18 hours to guarantee maximum caffeine extraction. Keeps you going indefinitely.", imgText: '🧊' }, // Cold
+            { id: 'item-4', name: 'Stack Overflow Mocha', price: 520, description: "Rich chocolate, espresso, and whipped cream. The answer to all your problems, sweet and satisfying.", imgText: '🍫' }, // Chocolate
+            { id: 'item-5', name: 'Breakpoint Blend', price: 380, description: "A potent drip coffee designed for focused inspection. Pauses the world so you can examine the variables.", imgText: '💧' }, // Drip
+            { id: 'item-6', name: 'The Lambda Loop', price: 250, description: "A delicate herbal tea blend for lighter hydration. Recursively soothing, yet non-caffeinated.", imgText: '🍃' }, // Tea
+            { id: 'item-7', name: 'Binary Black Coffee', price: 350, description: "Just hot water and coffee solids. The purest state of wakefulness. No sugar, no cream, just results.", imgText: '🖤' }, // Black
+            { id: 'item-8', name: 'Git Commit Croissant', price: 200, description: "Flaky, buttery, and perfectly layered. The ideal quick commit before diving back into the code.", imgText: '🥐' }, // Pastry
+            { id: 'item-9', name: 'Merge Conflict Muffin', price: 220, description: "Half chocolate, half vanilla. A delicious reminder that merging different flavors can be challenging but rewarding.", imgText: '🍰' }, // Cake/Muffin
+            // NEW 15 Items for 24 Total (24 > 20)
+            { id: 'item-10', name: 'Patch Release Pastry', price: 180, description: "A light almond scone—quick fix for low blood sugar, sweet and essential.", imgText: '🍪' }, // Cookie/Scone
+            { id: 'item-11', name: 'Refactor Red Velvet', price: 310, description: "A bold twist on the classic cake with cream cheese frosting, simplifying complexity into delicious layers.", imgText: '❤️' }, // Heart/Red Velvet
+            { id: 'item-12', name: 'API Key Americano', price: 300, description: "Clean, strong, and highly secure. The essential access point for a focused morning.", imgText: '☕' }, // Coffee
+            { id: 'item-13', name: 'Database Doughnut', price: 150, description: "A ring of sweet data storage, lightly glazed for quick retrieval.", imgText: '🍩' }, // Doughnut
+            { id: 'item-14', name: 'Cloud Server Chai', price: 390, description: "Warm, spicy, and infinitely scalable. Ensures comfort and stability, no matter the load.", imgText: '🌶️' }, // Spicy/Chai
+            { id: 'item-15', name: 'Load Balancer Lemonade', price: 320, description: "Perfectly chilled and balanced to manage all your concurrent tasks without failure.", imgText: '🍋' }, // Lemon/Cold
+            { id: 'item-16', name: 'Firmware Flat White', price: 410, description: "Smooth, velvety, and deeply integrated espresso. A reliable, low-latency beverage.", imgText: '🥛' }, // Milk/Latte
+            { id: 'item-17', name: 'Unit Test Udon Bowl (Snack)', price: 550, description: "A savory, focused snack to confirm all systems are working before lunch deployment.", imgText: '🍜' }, // Savory
+            { id: 'item-18', name: 'Encryption Éclair', price: 260, description: "Sweet vanilla cream filling, perfectly sealed in chocolate glaze. Highly satisfying, highly secure.", imgText: '🔒' }, // Secure/Sweet
+            { id: 'item-19', name: 'Agile Avocado Toast (Snack)', price: 400, description: "A simple, quick-to-deliver snack built around rapid iteration and fresh ingredients.", imgText: '🥑' }, // Avocado
+            { id: 'item-20', name: 'Legacy System Lager (Non-Alc)', price: 490, description: "A complex, non-alcoholic brew. Requires patience but offers a deep, rewarding profile.", imgText: '🍺' }, // Drink/Lager
+            { id: 'item-21', name: 'Binary Tree Brownie', price: 240, description: "A fudgy treat with deep, complex layers you have to traverse to fully appreciate.", imgText: '🧱' }, // Block/Brownie
+            { id: 'item-22', name: 'Recursion Refill (Water)', price: 50, description: "Pure, filtered water for infinite hydration cycles.", imgText: '💦' }, // Water
+            { id: 'item-23', name: 'Quantum Quinoa Salad (Snack)', price: 580, description: "A light, healthy salad with super-positional ingredients—it's both healthy and delicious.", imgText: '🥗' }, // Salad
+            { id: 'item-24', name: 'Zero-Downtime Smoothie', price: 500, description: "Tropical fruits blended for a seamless energy boost without any performance interruptions.", imgText: '🥭' } // Smoothie/Fruit
+        ];
+
+        let cart = {}; // { 'item-1': 2, 'item-5': 1, ... }
+        const GST_RATE = 0.18; // 18% GST
+
+        // Global variable for the ambient synth
+        let ambientSynth = null;
+        let ambientSequence = null;
+
+        // --- UI Functions ---
+
+        function showMessage(message, isError = false) {
+            const messageBox = document.getElementById('message-box');
+            const messageText = document.getElementById('message-text');
+
+            messageBox.classList.remove('bg-accent-warm', 'text-white', 'shadow-warm-glow', 'bg-red-500'); 
+            
+            if (isError) {
+                messageBox.classList.add('bg-red-500', 'text-white', 'shadow-warm-glow'); 
+            } else {
+                messageBox.classList.add('bg-accent-warm', 'text-white', 'shadow-warm-glow'); 
+            }
+
+
+            messageText.textContent = message;
+            messageBox.classList.remove('opacity-0', 'pointer-events-none');
+            messageBox.classList.add('opacity-100');
+
+            setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                messageBox.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+        
+        // --- Tone.js Ambient Audio Setup (The Cafe Effect) ---
+
+        function initializeAudio() {
+            if (typeof Tone === 'undefined') {
+                showMessage('Audio library failed to load.', true);
+                return 'Audio failed to start';
+            }
+
+            const icon = document.getElementById('audio-icon');
+
+            if (ambientSynth && Tone.context.state === 'running') {
+                ambientSynth.volume.rampTo(-Infinity, 1);
+                ambientSequence.stop();
+                // FIX: Replaced Tone.context.suspend() with Tone.context.pause() to fix TypeError in Tone.js 14.8.49
+                Tone.context.pause(); 
+                return 'Audio stopped';
+
+            } else {
+                Tone.start();
+
+                if (!ambientSynth) {
+                    ambientSynth = new Tone.PolySynth(Tone.Synth, {
+                        oscillator: { type: "sawtooth" },
+                        envelope: { attack: 2, decay: 0.1, sustain: 0.9, release: 4 },
+                        filter: {
+                            type: 'lowpass',
+                            frequency: 600, 
+                            rolloff: -12
+                        },
+                        volume: -24 
+                    }).toDestination();
+                    
+                    const progression = [
+                        { time: "0:0:0", note: ["C3", "Eb3", "G3", "Bb3"], duration: "2n" },
+                        { time: "2:0:0", note: ["F3", "Ab3", "C4", "Eb4"], duration: "2n" } 
+                    ];
+
+                    ambientSequence = new Tone.Sequence((time, event) => {
+                        ambientSynth.triggerAttackRelease(event.note, event.duration, time);
+                    }, progression, "4n"); 
+                    ambientSequence.loop = true;
+                    ambientSequence.loopEnd = "4m"; 
+                    ambientSequence.start(0);
+
+                    ambientSynth.volume.rampTo(-18, 5); 
+
+                } else {
+                    Tone.context.resume();
+                    ambientSequence.start(0);
+                    ambientSynth.volume.rampTo(-18, 1); 
+                }
+
+                return 'Audio running';
+            }
+        };
+
+        function toggleAmbientAudio() {
+            const audioStatus = initializeAudio();
+            const icon = document.getElementById('audio-icon');
+            
+            if (audioStatus.includes('running')) {
+                icon.classList.remove('text-gray-500');
+                icon.classList.add('text-accent-warm', 'animate-pulse'); 
+                showMessage('Ambient Lo-Fi operational. Happy coding!');
+            } else if (audioStatus.includes('stopped')) {
+                icon.classList.add('text-gray-500');
+                icon.classList.remove('text-accent-warm', 'animate-pulse');
+                showMessage('Ambient Lo-Fi deactivated.');
+            } else {
+                // Keep the icon gray if failed to start
+            }
+        }
+        
+        // --- Sidebar Logic ---
+
+        function openSidebar() {
+            const sidebar = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggleButton = document.getElementById('menu-toggle');
+
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-50');
+            toggleButton.classList.add('hidden'); 
+            // Re-render Lucide icons upon opening
+            lucide.createIcons();
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggleButton = document.getElementById('menu-toggle');
+
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.classList.remove('opacity-50');
+            toggleButton.classList.remove('hidden'); 
+        }
+
+        function closeSidebarAndScroll(sectionId) {
+            closeSidebar();
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- Ordering/Cart Logic ---
+
+        function updateCartQuantity(itemId, change) {
+            const currentQuantity = cart[itemId] || 0;
+            const newQuantity = Math.max(0, currentQuantity + change);
+
+            if (newQuantity > 0) {
+                cart[itemId] = newQuantity;
+            } else {
+                delete cart[itemId];
+            }
+            renderOrderModalContent();
+        }
+
+        function calculateTotal() {
+            let subtotal = 0;
+            for (const itemId in cart) {
+                const item = menuItems.find(i => i.id === itemId);
+                if (item) {
+                    subtotal += item.price * cart[itemId];
+                }
+            }
+            const gst = subtotal * GST_RATE;
+            const total = subtotal + gst;
+
+            return {
+                subtotal: subtotal,
+                gst: gst,
+                total: total
+            };
+        }
+        
+        // MODIFIED: Accepts an optional itemId to add to cart before opening modal
+        function openOrderModal(itemId = null) {
+            if (itemId) {
+                // Find the item name for the message
+                const item = menuItems.find(i => i.id === itemId);
+                
+                // Add one unit of the item to the cart
+                const currentQuantity = cart[itemId] || 0;
+                cart[itemId] = currentQuantity + 1;
+                
+                // Show confirmation message (MODIFIED TEXT HERE)
+                if (item) {
+                    showMessage(`1x ${item.name} added to Debug Menu!`);
+                }
+            }
+
+            const modal = document.getElementById('order-modal');
+            modal.classList.remove('hidden');
+            // Re-render the cart content (this will reflect the new item/quantity)
+            renderOrderModalContent();
+        }
+
+
+        function renderOrderModalContent() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const totals = calculateTotal();
+
+            // 1. Render Cart Items
+            let itemsHtml = '';
+            
+            menuItems.forEach(item => {
+                const quantity = cart[item.id] || 0;
+                const itemTotal = (item.price * quantity).toFixed(0);
+
+                // Determine image URL based on placeholder text
+                let imgColor = item.id.includes('1') || item.id.includes('7') ? '402E2A/EFEBE9' : (item.id.includes('2') || item.id.includes('4') || item.id.includes('8') ? 'B57B6C/FFFFFF' : 'EFEBE9/402E2A');
+                let imgUrl = `https://placehold.co/80x80/${imgColor}?text=${item.imgText.replace(/\s/g, '+')}`;
+
+                itemsHtml += `
+                    <div class="flex items-center justify-between border-b border-bg-primary py-4">
+                        <div class="flex items-center space-x-4">
+                            <!-- Image now displays the unicode symbol/emoji -->
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center text-4xl border border-accent-warm/30 bg-bg-primary">
+                                ${item.imgText}
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-default">${item.name}</h4>
+                                <p class="text-sm text-text-default/70">₹${item.price.toFixed(0)}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="updateCartQuantity('${item.id}', -1)" class="w-8 h-8 rounded-full bg-bg-primary text-text-default hover:bg-accent-hover hover:text-white transition duration-150 font-bold">-</button>
+                            <span class="w-6 text-center font-bold">${quantity}</span>
+                            <button onclick="updateCartQuantity('${item.id}', 1)" class="w-8 h-8 rounded-full bg-accent-warm text-white hover:bg-accent-hover transition duration-150 font-bold">+</button>
+                        </div>
+                        <span class="text-lg font-bold w-16 text-right">₹${itemTotal}</span>
+                    </div>
+                `;
+            });
+
+            if (Object.keys(cart).length === 0) {
+                itemsHtml = '<p class="text-center py-8 text-text-default/70 italic">Your debug console is empty. Add some fuel!</p>';
+                document.getElementById('checkout-form').classList.add('hidden');
+                document.getElementById('ai-pair-section').classList.add('hidden');
+            } else {
+                document.getElementById('checkout-form').classList.remove('hidden');
+                document.getElementById('ai-pair-section').classList.remove('hidden');
+            }
+
+            cartItemsContainer.innerHTML = itemsHtml;
+
+            // 2. Render Totals
+            document.getElementById('subtotal').textContent = `₹${totals.subtotal.toFixed(0)}`;
+            document.getElementById('gst').textContent = `₹${totals.gst.toFixed(0)}`;
+            document.getElementById('total-amount').textContent = `₹${totals.total.toFixed(0)}`;
+            document.getElementById('checkout-button').disabled = Object.keys(cart).length === 0;
+
+            // Clear previous AI pairing content
+            document.getElementById('ai-pairing-result').textContent = 'Click "Run Pairing ✨" for a recommendation.';
+            document.getElementById('ai-pairing-result').classList.remove('italic', 'text-text-default/90', 'text-text-default/60', 'font-semibold');
+            document.getElementById('ai-pairing-result').classList.add('italic', 'text-text-default/60');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        // --- NEW CELEBRATION FUNCTION ---
+        const PARTICLE_COLORS = ['#B57B6C', '#D6452C', '#F8F4F2', '#E5A549'];
+
+        function triggerCelebration(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const rect = container.getBoundingClientRect();
+            const particlesContainer = document.getElementById('celebration-particles');
+            particlesContainer.innerHTML = ''; // Clear previous particles
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random color from the theme palette
+                const color = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+                particle.style.backgroundColor = color;
+
+                // Set initial position (center of the button/form)
+                particle.style.left = `${rect.width / 2}px`;
+                particle.style.top = `${rect.height}px`; // Start at the bottom of the container div
+
+                // Define random trajectory (CSS custom properties)
+                const xOffset = (Math.random() - 0.5) * 150; // -75px to 75px horizontal spread
+                const yOffset = -(Math.random() * 200 + 50); // -50px to -250px vertical rise
+                
+                particle.style.setProperty('--x', `${xOffset}px`);
+                particle.style.setProperty('--y', `${yOffset}px`);
+                
+                // Randomize delay slightly
+                particle.style.animationDelay = `${Math.random() * 0.5}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+
+            // Remove particles after the animation finishes (1.5s + small buffer)
+            setTimeout(() => {
+                particlesContainer.innerHTML = '';
+            }, 2000);
+        }
+
+        // --- UPDATED FEEDBACK SUBMISSION HANDLER ---
+        function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formContainer = form.closest('.relative');
+
+            // 1. Show confirmation message
+            showMessage('Feedback received! We\'ll respond after we finish compiling.'); 
+            
+            // 2. Trigger the celebration from the form's containing block
+            if (formContainer) {
+                // The particle container is inside the contact form's parent div
+                triggerCelebration('feedback-form-container'); 
+            }
+
+            // 3. Clear the form fields
+            form.reset();
+
+            return false; // Prevent default navigation
+        }
+
+        // --- EXISTING ORDERING FUNCTIONS (UNCHANGED) ---
+        function handleCheckout(event) {
+            event.preventDefault();
+            const phone = document.getElementById('phone-number').value;
+            const totals = calculateTotal();
+            
+            if (Object.keys(cart).length === 0) {
+                showMessage('The cart is empty! Add items before placing an an order.');
+                return;
+            }
+
+            // Simulate order submission
+            showMessage(`Order received! Total: ₹${totals.total.toFixed(0)}. We'll call ${phone} in a moment.`);
+            
+            // Reset cart and close modal
+            cart = {};
+            document.getElementById('phone-number').value = '';
+            closeOrderModal();
+        }
+        
+        // --- GEMINI LLM INTEGRATIONS (UNCHANGED) ---
+        async function runMoodPairing() {
+            const resultElement = document.getElementById('ai-pairing-result');
+            const buttonElement = document.getElementById('ai-pairing-button');
+
+            if (Object.keys(cart).length === 0) {
+                resultElement.textContent = 'Add items to your cart first to run the pairing assistant.';
+                return;
+            }
+
+            // 1. Prepare UI for loading state
+            resultElement.classList.remove('italic', 'text-text-default/90', 'text-text-default/60', 'font-semibold');
+            resultElement.innerHTML = '<span class="flex items-center justify-center text-accent-warm"><div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6 mr-2"></div> Running analysis...</span>';
+            buttonElement.disabled = true;
+
+            // 2. Format cart items for the prompt
+            const cartItemsList = Object.keys(cart).map(itemId => {
+                const item = menuItems.find(i => i.id === itemId);
+                return `${cart[itemId]}x ${item.name} (${item.description})`;
+            }).join(', ');
+
+            const systemPrompt = "You are the Debug Cafe's AI barista, a supportive and witty assistant. Your task is to review the customer's current order (the 'build') and give them a short, creative, and fun 'Mood Pairing'. This pairing must consist of: 1. A themed name (e.g., 'The Pre-Release Push'), 2. A short, one-sentence description of the mood/task this order suggests, and 3. A recommendation for a perfect ambient background sound/music type (e.g., 'lo-fi jazz', 'deep house techno', 'classical piano', 'ambient drone'). Format your response clearly with bolding.";
+            
+            const userQuery = `My current order is: ${cartItemsList}. What is the perfect Mood Pairing for this build?`;
+
+            // 3. Construct API Payload
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            // 4. Call Gemini API (with exponential backoff for resilience)
+            const MAX_RETRIES = 3;
+            let resultText = "Error: Could not compile pairing. Check your connection or try again.";
+
+            for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts[0].text) {
+                        resultText = result.candidates[0].content.parts[0].text;
+                        break; // Success, exit loop
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${attempt + 1} failed:`, error);
+                    if (attempt < MAX_RETRIES - 1) {
+                        await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000)); // Exponential backoff
+                    }
+                }
+            }
+
+            // 5. Update UI with result
+            resultElement.classList.add('text-text-default/90', 'font-semibold');
+            resultElement.innerHTML = resultText.replace(/\n/g, '<br>'); // Preserve line breaks from LLM
+            buttonElement.disabled = false;
+        }
+
+        async function generateFlavorProfile(itemId, button) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return showMessage('Item not found.', true);
+
+            // 1. Prepare UI for loading state
+            button.disabled = true;
+            button.innerHTML = '<span class="flex items-center"><div class="loader ease-linear rounded-full border-2 border-t-2 border-white/50 h-4 w-4 mr-2"></div> Generating...</span>';
+            
+            // 2. Define Prompts
+            const systemPrompt = `You are the Debug Cafe's AI Flavor Architect. Your job is to generate a short, witty, and compelling "Flavor Profile" and "Code/Mood Pairing" for a menu item. The profile must be less than 40 words and use metaphors related to coding, technology, or problem-solving.
+                Format the response as: **Flavor Profile:** [Creative description]. **Code Pairing:** [Mood/Task suggestion].`;
+
+            const userQuery = `Generate a flavor profile for: ${item.name}. Description: ${item.description}.`;
+
+            // 3. Construct API Payload
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            // 4. Call Gemini API
+            let profileText = "Error: Failed to fetch profile. Try again.";
+            const MAX_RETRIES = 3;
+
+            for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts[0].text) {
+                        profileText = result.candidates[0].content.parts[0].text;
+                        break;
+                    }
+                } catch (error) {
+                    console.error(`Flavor Profile Attempt ${attempt + 1} failed:`, error);
+                    if (attempt < MAX_RETRIES - 1) {
+                        await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+                    }
+                }
+            }
+
+            // 5. Restore button state
+            button.disabled = false;
+            button.innerHTML = 'Flavor Profile ✨';
+
+
+            // 6. Display result in the new modal/message box
+            const flavorModalTitle = document.getElementById('flavor-modal-title');
+            const flavorModalContent = document.getElementById('flavor-modal-content');
+            const flavorModal = document.getElementById('flavor-modal');
+            
+            flavorModalTitle.textContent = item.name + ' Analysis';
+            flavorModalContent.innerHTML = profileText;
+
+            // Show the modal
+            flavorModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeFlavorModal() {
+            document.getElementById('flavor-modal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // --- Menu Rendering Logic (MODIFIED for limiting) ---
+
+        function loadFullMenu() {
+            renderMenu(menuItems.length); // Render all 24 items
+            // Scroll to the menu section after full load
+            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderMenu(limit = 9) { // Default limit is 9 items
+            const menuContainer = document.getElementById('menu-cards-container');
+            const menuButtonContainer = document.getElementById('menu-button-container');
+            if (!menuContainer || !menuButtonContainer) return;
+
+            const itemsToRender = menuItems.slice(0, limit);
+            let menuHtml = '';
+            
+            itemsToRender.forEach(item => {
+                // Determine image URL based on placeholder text and thematic color
+                // NOTE: Placeholder background color is set to dark brown/cream for text/icon visibility
+                let imgColor = item.id.includes('1') || item.id.includes('7') ? '402E2A/EFEBE9' : (item.id.includes('2') || item.id.includes('4') || item.id.includes('8') ? 'B57B6C/FFFFFF' : 'EFEBE9/402E2A');
+                let imgUrl = `https://placehold.co/100x100/${imgColor}?text=${item.imgText.replace(/\s/g, '+')}`;
+                
+                menuHtml += `
+                    <div class="bg-bg-secondary p-8 rounded-2xl shadow-lg card-hover-effect flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-5" onclick="openOrderModal('${item.id}')">
+                        <!-- Image/Icon Placeholder (Displays Unicode Symbol) -->
+                        <div class="w-24 h-24 flex-shrink-0 rounded-xl border-4 border-accent-warm/30 bg-bg-primary flex items-center justify-center text-5xl transform rotate-3 shadow-md">
+                            ${item.imgText}
+                        </div>
+
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-accent-warm mb-1">${item.name}</h3>
+                            <p class="text-text-default/70 text-sm mb-3">${item.description}</p>
+                            <span class="text-2xl font-extrabold text-text-default">₹${item.price}</span>
+                            
+                            <div class="mt-4 flex space-x-3">
+                                <!-- Feature 1: Flavor Profile Button -->
+                                <button onclick="event.stopPropagation(); generateFlavorProfile('${item.id}', this)" class="bg-accent-warm text-white px-3 py-1.5 rounded-full text-xs font-semibold transition duration-200 hover:bg-accent-hover transform hover:scale-105">
+                                    Flavor Profile ✨
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                `;
+            });
+
+            menuContainer.innerHTML = menuHtml;
+
+            // Conditional Button Logic
+            if (limit < menuItems.length) {
+                const remainingItems = menuItems.length - limit;
+                // Show the Load More button
+                menuButtonContainer.innerHTML = `
+                    <div class="text-center mt-16">
+                         <button onclick="loadFullMenu()" class="bg-accent-warm hover:bg-accent-hover text-white px-10 py-4 rounded-lg text-lg font-bold transition duration-300 transform hover:scale-[1.02] shadow-lg">
+                            View Full Codebase (${remainingItems} More Items) &rarr;
+                        </button>
+                    </div>
+                `;
+            } else {
+                // If all items are loaded, show only the download button
+                menuButtonContainer.innerHTML = `
+                    <div class="text-center mt-16">
+                         <button onclick="showMessage('Download link simulated. Check back later for our full digital menu!')" class="bg-accent-warm/70 hover:bg-accent-warm text-white px-10 py-4 rounded-lg text-lg font-bold transition duration-300 transform hover:scale-[1.02]">
+                            Download Full Menu (PDF)
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // --- Three.js Cafe Animation Logic (MODIFIED for Dark Brown Theme) ---
+        const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+
+        const heroFragmentShader = `
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            uniform vec3 u_color_a; 
+            uniform vec3 u_color_b; 
+            uniform vec3 u_color_c; 
+            uniform vec3 u_color_d; 
+            varying vec2 vUv;
+
+            float hash(vec2 p) {
+                return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            float smoothNoise(vec2 st) {
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                
+                float a = hash(i);
+                float b = hash(i + vec2(1.0, 0.0));
+                float c = hash(i + vec2(0.0, 1.0));
+                float d = hash(i + vec2(1.0, 1.0));
+
+                vec2 u = f*f*(3.0-2.0*f);
+                
+                return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+            }
+
+            float fbm(vec2 st) {
+                float value = 0.0;
+                float amplitude = 0.5;
+                st *= 2.0;
+                for (int i = 0; i < 4; i++) {
+                    value += amplitude * smoothNoise(st);
+                    st *= 2.0;
+                    amplitude *= 0.5;
+                }
+                return value;
+            }
+
+            vec3 colorBlend(float t) {
+                float t_mod = mod(t, 4.0);
+                vec3 color;
+                if (t_mod < 1.0) {
+                    color = mix(u_color_a, u_color_b, t_mod);
+                } else if (t_mod < 2.0) {
+                    color = mix(u_color_b, u_color_c, t_mod - 1.0);
+                } else if (t_mod < 3.0) {
+                    color = mix(u_color_c, u_color_d, t_mod - 2.0);
+                } else {
+                    color = mix(u_color_d, u_color_a, t_mod - 3.0);
+                }
+                return color;
+            }
+
+            void main() {
+                vec2 st = (vUv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0) * 2.0;
+                
+                // Increased movement complexity for a more realistic galaxy flow
+                st.y += u_time * 0.07;st.x += sin(u_time * 0.03) * 0.15; 
+
+                // Increased FBM scale for finer cosmic dust detail
+                float n = fbm(st * 2.5 + 0.1 * sin(u_time * 0.05));
+                
+                float intensity = clamp(n * 2.5 - 0.5, 0.0, 1.0); // Sharper contrast
+                
+                vec3 baseColor = colorBlend(u_time * 0.15); // Slightly slower color shift
+                vec3 mixedColor = mix(baseColor * 0.3, baseColor, intensity);
+                
+                float flicker = sin(u_time * 1.5) * 0.05 + 0.95;
+                mixedColor *= flicker;
+
+                gl_FragColor = vec4(mixedColor, 1.0);
+            }
+        `;
+
+        const menuFragmentShader = `
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            uniform vec3 u_dust_color; 
+            varying vec2 vUv;
+
+            float hash(vec2 p) {
+                return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            float smoothNoise(vec2 st) {
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                
+                float a = hash(i);
+                float b = hash(i + vec2(1.0, 0.0));
+                float c = hash(i + vec2(0.0, 1.0));
+                float d = hash(i + vec2(1.0, 1.0));
+
+                vec2 u = f*f*(3.0-2.0*f); 
+                
+                return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+            }
+
+            float fbm(vec2 st) {
+                float value = 0.0;
+                float amplitude = 0.5;
+                st *= 2.0;
+                for (int i = 0; i < 4; i++) {
+                    value += amplitude * smoothNoise(st);
+                    st *= 2.0;
+                    amplitude *= 0.5;
+                }
+                return value;
+            }
+
+            void main() {
+                vec2 st = (vUv - 0.5) * 2.0;
+                st.x *= u_resolution.x / u_resolution.y;
+                
+                float speed = 0.02; 
+                float scale = 12.0; 
+                
+                float n = fbm(st * scale + u_time * speed + sin(u_time * 0.05) * 0.3);
+                
+                float intensity = smoothstep(0.4, 0.5, n);
+
+                vec3 finalColor = u_dust_color;
+                
+                gl_FragColor = vec4(finalColor, intensity * 0.2); 
+            }
+        `;
+        
+        let scene, camera, renderer, uniform; 
+        let menuScene, menuCamera, menuRenderer, menuUniform; 
+
+        // --- THREE.JS INIT FUNCTIONS (MODIFIED COLORS FOR DARK BROWN) ---
+        function initCafeBackground() {
+            const container = document.getElementById('home');
+            const canvas = document.getElementById('cafe-background');
+            if (!container || !canvas) return;
+            scene = new THREE.Scene();
+            camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            
+            // MODIFIED COLORS for Dark Brown/Copper Theme: 
+            const colorA = new THREE.Color(0x281A14); // Very Deep Espresso Brown
+            const colorB = new THREE.Color(0x402E2A); // Rich Coffee Brown
+            const colorC = new THREE.Color(0xB57B6C); // Muted Terracotta/Copper
+            const colorD = new THREE.Color(0x73554A); // Darker Brown-Red
+
+            uniform = {
+                u_time: { value: 0.0 },
+                u_resolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
+                u_color_a: { value: colorA },
+                u_color_b: { value: colorB },
+                u_color_c: { value: colorC },
+                u_color_d: { value: colorD }
+            };
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const material = new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vertexShader, fragmentShader: heroFragmentShader, transparent: false });
+            const plane = new THREE.Mesh(geometry, material);
+            scene.add(plane);
+        }
+
+        function initMenuBackground() {
+            const container = document.getElementById('menu');
+            const canvas = document.getElementById('menu-background');
+            if (!container || !canvas) return;
+            menuScene = new THREE.Scene();
+            menuCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+            menuRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); 
+            menuRenderer.setSize(container.clientWidth, container.clientHeight);
+            const dustColor = new THREE.Color(0xB57B6C); 
+            menuUniform = {
+                u_time: { value: 0.0 },
+                u_resolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
+                u_dust_color: { value: dustColor }
+            };
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const material = new THREE.ShaderMaterial({ uniforms: menuUniform, vertexShader: vertexShader, fragmentShader: menuFragmentShader, transparent: true });
+            const plane = new THREE.Mesh(geometry, material);
+            menuScene.add(plane);
+        }
+
+        function onWindowResize() {
+            const heroContainer = document.getElementById('home');
+            if (renderer && heroContainer) {
+                renderer.setSize(heroContainer.clientWidth, heroContainer.clientHeight);
+                uniform.u_resolution.value.x = heroContainer.clientWidth;
+                uniform.u_resolution.value.y = heroContainer.clientHeight;
+            }
+            const menuContainer = document.getElementById('menu');
+            if (menuRenderer && menuContainer) {
+                menuRenderer.setSize(menuContainer.clientWidth, menuContainer.clientHeight);
+                menuUniform.u_resolution.value.x = menuContainer.clientWidth;
+                menuUniform.u_resolution.value.y = menuContainer.clientHeight;
+            }
+        }
+
+        function animateCafeBackground(time) {
+            requestAnimationFrame(animateCafeBackground);
+            
+            if (uniform) {
+                uniform.u_time.value = time * 0.001; 
+                renderer.render(scene, camera);
+            }
+            
+            if (menuUniform) {
+                menuUniform.u_time.value = time * 0.001;
+                menuRenderer.render(menuScene, menuCamera);
+            }
+        }
+
+        window.onload = function () {
+            renderMenu(); 
+            if (typeof THREE !== 'undefined') {
+                initCafeBackground(); 
+                initMenuBackground(); 
+                window.addEventListener('resize', onWindowResize, false);
+                animateCafeBackground(0); 
+            } else {
+                console.error("Three.js not loaded.");
+            }
+        };
+    </script>
+</head>
+<body class="bg-bg-primary text-text-default">
+    
+    <!-- Flavor Profile Modal (New Feature) -->
+    <div id="flavor-modal" class="fixed inset-0 bg-text-default/80 backdrop-blur-sm z-50 p-4 md:p-8 flex items-center justify-center opacity-0 pointer-events-none">
+        <div class="relative w-full max-w-lg mx-auto bg-bg-secondary p-8 rounded-2xl shadow-2xl border border-accent-warm/30 transform transition-transform duration-300 scale-100">
+            <!-- Close Button -->
+            <button onclick="closeFlavorModal()" class="absolute top-4 right-4 text-text-default hover:text-accent-warm transition duration-150 p-2 rounded-full hover:bg-bg-primary">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <h3 id="flavor-modal-title" class="text-3xl font-extrabold text-accent-warm mb-4 border-b pb-2">Item Analysis</h3>
+            
+            <p class="text-text-default/70 italic mb-4">Generated by the AI Flavor Architect:</p>
+
+            <div id="flavor-modal-content" class="text-lg text-text-default leading-relaxed bg-bg-primary p-4 rounded-lg border border-accent-warm/30">
+                <!-- LLM result will be inserted here -->
+            </div>
+            
+            <button onclick="closeFlavorModal()" class="mt-6 w-full bg-accent-warm hover:bg-accent-hover text-white font-bold py-3 rounded-lg text-lg transition duration-300">
+                Close Debug Window
+            </button>
+        </div>
+    </div>
+    
+    <!-- Order Modal -->
+    <div id="order-modal" class="fixed inset-0 bg-text-default/80 backdrop-blur-sm z-50 hidden p-4 md:p-8 overflow-y-auto">
+        <div class="relative w-full max-w-4xl mx-auto my-12">
+            <div class="bg-bg-secondary p-6 md:p-10 rounded-2xl shadow-2xl border border-accent-warm/30">
+                <!-- Close Button -->
+                <button onclick="closeOrderModal()" class="absolute top-4 right-4 text-text-default hover:text-accent-warm transition duration-150 p-2 rounded-full hover:bg-bg-primary">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                
+                <h3 class="text-4xl font-extrabold text-accent-warm mb-8 border-b-2 pb-2">Initialize Order Protocol</h3>
+
+                <!-- Cart Items Container -->
+                <div id="cart-items-container" class="space-y-2 max-h-96 overflow-y-auto pr-2">
+                    <!-- Cart items will be rendered here by JavaScript -->
+                </div>
+                
+                <!-- --- GEMINI FEATURE: MOOD PAIRING ASSISTANT --- -->
+                <div id="ai-pair-section" class="mt-8 pt-6 border-t border-accent-warm/50">
+                    <h4 class="text-xl font-bold text-text-default mb-4 flex items-center">
+                        ✨ Mood Pairing Assistant
+                    </h4>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                        <button id="ai-pairing-button" onclick="runMoodPairing()" class="sm:w-1/3 bg-accent-warm hover:bg-accent-hover text-white font-bold py-3 rounded-lg text-base transition duration-300 shadow-lg transform hover:scale-[1.02]">
+                            Run Pairing ✨
+                        </button>
+                        <p id="ai-pairing-result" class="sm:w-2/3 p-3 bg-bg-primary rounded-lg italic text-text-default/60 flex items-center justify-center text-sm">
+                            Click "Run Pairing ✨" for a recommendation.
+                        </p>
+                    </div>
+                </div>
+                <!-- --- END GEMINI FEATURE --- -->
+
+                <!-- Totals Summary -->
+                <div class="mt-8 border-t border-accent-warm/50 pt-4 space-y-2">
+                    <div class="flex justify-between text-xl font-medium">
+                        <span class="text-text-default/80">Subtotal:</span>
+                        <span id="subtotal" class="text-text-default">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-lg text-text-default/70">
+                        <span>GST (18%):</span>
+                        <span id="gst">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-2xl font-extrabold text-accent-warm pt-2 border-t border-accent-warm/50">
+                        <span>Total Amount:</span>
+                        <span id="total-amount">₹0</span>
+                    </div>
+                </div>
+
+                <!-- Checkout Form -->
+                <form id="checkout-form" onsubmit="handleCheckout(event)" class="mt-8">
+                    <label for="phone-number" class="block text-lg font-semibold mb-2">Contact Phone Number (Required for pickup):</label>
+                    <input type="tel" id="phone-number" required pattern="[0-9]{10}" placeholder="Enter 10 digit phone number" class="w-full p-4 mb-6 bg-bg-primary border border-accent-warm/50 rounded-lg text-text-default placeholder:text-text-default/50 focus:ring-2 focus:ring-accent-warm focus:border-accent-warm transition duration-200">
+                    
+                    <button type="submit" id="checkout-button" disabled class="w-full bg-accent-warm hover:bg-accent-hover text-white font-bold py-4 rounded-lg text-xl transition duration-300 transform hover:scale-[1.01] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                        Compile & Place Order
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar Overlay (Dimming Effect) - Clickable to close -->
+    <div id="sidebar-overlay" onclick="closeSidebar()" class="fixed inset-0 bg-text-default/50 opacity-0 z-40 transition-opacity duration-300 pointer-events-none"></div>
+
+    <!-- Sliding Sidebar Menu (UPDATED LINKS HERE) -->
+    <nav id="sidebar-menu" class="fixed top-0 left-0 w-64 h-full bg-bg-secondary shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 p-6">
+        <!-- Close Button -->
+        <button onclick="closeSidebar()" class="absolute top-4 right-4 text-text-default hover:text-accent-warm transition duration-150 p-2 rounded-full hover:bg-bg-primary">
+            <!-- Close icon (X) -->
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <!-- Logo -->
+        <a href="#home" class="logo-container text-3xl font-extrabold text-accent-warm tracking-widest block mb-8 mt-2 hover:text-text-default transition duration-150" onclick="closeSidebarAndScroll('home')">
+            <span class="dc-symbol">DC</span>
+            <img src="${LOGO_BASE64_SQUARE}" alt="Debug Cafe Logo" class="h-8 w-8 inline-block mr-2 align-middle">
+            Debug Cafe
+        </a>
+        <div class="space-y-2">
+            <!-- Menu Link -->
+            <a href="#menu" onclick="closeSidebarAndScroll('menu')" class="sidebar-link">
+                <i data-lucide="coffee" class="icon-base"></i>
+                Menu
+            </a>
+            <!-- Order Link (CTA) -->
+            <a href="#" onclick="openOrderModal(); closeSidebar();" class="sidebar-link sidebar-cta">
+                <i data-lucide="shopping-cart" class="icon-base text-white"></i>
+                Order Now
+            </a>
+            <div class="sidebar-separator"></div>
+
+            <!-- About Us Link (NEW) -->
+            <a href="#about" onclick="closeSidebarAndScroll('about')" class="sidebar-link">
+                <i data-lucide="info" class="icon-base"></i>
+                About Us
+            </a>
+            <!-- Location Link (NEW) -->
+            <a href="#contact" onclick="closeSidebarAndScroll('contact')" class="sidebar-link">
+                <i data-lucide="map-pin" class="icon-base"></i>
+                Location
+            </a>
+            <!-- Reviews Link (NEW) -->
+            <a href="#reviews" onclick="closeSidebarAndScroll('reviews')" class="sidebar-link">
+                <i data-lucide="message-square-text" class="icon-base"></i>
+                Reviews
+            </a>
+            <!-- Feedback Link -->
+            <a href="#contact" onclick="closeSidebarAndScroll('contact')" class="sidebar-link">
+                <i data-lucide="mail-plus" class="icon-base"></i>
+                Submit Feedback
+            </a>
+            <div class="sidebar-separator"></div>
+
+            <!-- Policy Link (NEW) -->
+            <a href="#policy" onclick="closeSidebarAndScroll('policy')" class="sidebar-link">
+                <i data-lucide="file-text" class="icon-base"></i>
+                Policy
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Fixed Hamburger Toggle (Top Left) -->
+    <button id="menu-toggle" onclick="openSidebar()" aria-label="Open Menu" class="fixed top-5 left-5 z-50 p-3 rounded-full bg-bg-secondary hover:bg-accent-warm/20 transition duration-300 transform hover:scale-105 border border-accent-warm/30 shadow-lg">
+        <!-- Hamburger icon (three horizontal lines) -->
+        <svg class="h-6 w-6 text-accent-warm" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+    
+
+    <!-- Global Message Box (Replaces alert()) -->
+    <div id="message-box" class="fixed top-5 right-5 z-50 p-4 rounded-xl shadow-warm-glow bg-accent-warm text-white transition-opacity duration-300 opacity-0 pointer-events-none">
+        <span id="message-text" class="font-bold"></span>
+    </div>
+
+    <!-- Header & Navigation (Cleaned up to remove redundant links) -->
+    <header class="sticky top-0 z-30 bg-bg-secondary shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo/Brand Name (Offset to clear the fixed hamburger icon) -->
+                <div class="flex-shrink-0 ml-16 flex items-center">
+                    <a href="#home" class="logo-container text-3xl font-extrabold text-accent-warm tracking-widest transition duration-300 hover:text-text-default">
+                        <span class="dc-symbol">DC</span>
+                        <img src="${LOGO_BASE64_SQUARE}" alt="Debug Cafe Logo" class="h-8 w-8 inline-block mr-2">
+                        Debug Cafe
+                    </a>
+                </div>
+
+                <!-- Control Icons and CTA -->
+                <nav>
+                    <div class="flex items-center space-x-6">
+                        <!-- Ambient Audio Toggle Button -->
+                        <button onclick="toggleAmbientAudio()" title="Toggle Ambient Lo-Fi Sound" class="p-3 rounded-full hover:bg-bg-primary transition duration-150 transform hover:scale-110">
+                            <!-- Speaker Icon (inline SVG) -->
+                            <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                            </svg>
+                        </button>
+                        
+                        <!-- CTA Button Redesign -->
+                        <!-- NOTE: This CTA opens the cart modal without adding an item -->
+                        <button onclick="openOrderModal()" class="bg-accent-warm hover:bg-accent-hover text-white px-6 py-2.5 rounded-full text-lg font-bold transition duration-300 shadow-xl transform hover:shadow-warm-glow">
+                            Order Now
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section - Now serving as the container for the animated background -->
+        <section id="home" class="relative overflow-hidden py-28 md:py-44" style="background-color: transparent;">
+            
+            <!-- 3D Animated Cafe Background Canvas (Hero) -->
+            <canvas id="cafe-background"></canvas>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+                <div class="flex flex-col items-center p-8 focus-glow rounded-2xl bg-bg-secondary/70 backdrop-blur-sm border border-accent-warm/20">
+                    <h1 class="text-6xl sm:text-8xl font-extrabold text-text-default mb-4 leading-tight">
+                        <span class="text-accent-warm block sm:inline">Debug</span> Cafe
+                    </h1>
+                    <p class="text-xl sm:text-3xl text-text-default/80 mb-10 max-w-3xl font-light italic">
+                        Fueling code, one perfectly brewed cup at a time. The ultimate fix for your syntax and your soul.
+                    </p>
+                    <button onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });" class="bg-accent-warm hover:bg-accent-hover text-white text-xl font-bold px-12 py-4 rounded-lg transition duration-300 transform hover:scale-[1.03] shadow-warm-glow">
+                        View Codebase (Menu) &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="relative py-24 bg-bg-primary">
+            
+            <!-- NEW: 3D Animated Cafe Background Canvas (Menu - Sweets/Dust) -->
+            <canvas id="menu-background"></canvas>
+            
+            <!-- Content Wrapper (z-index 10) -->
+            <div class="content-container max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 class="text-5xl font-extrabold text-center text-text-default mb-16 border-b-4 border-accent-warm inline-block pb-2 tracking-wide">
+                    The Codebase (Menu)
+                </h2>
+
+                <div id="menu-cards-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+                    <!-- Menu Cards will be dynamically inserted here by JS's renderMenu() -->
+                </div>
+
+                <!-- Container for the View All/Download Button -->
+                <div id="menu-button-container">
+                    <!-- Content injected by renderMenu() -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="md:flex md:space-x-12 items-center">
+                    <div class="md:w-1/2">
+                        <h2 class="text-4xl font-extrabold text-text-default mb-8 border-l-4 pl-4 border-accent-warm">
+                            Our Mission: Compile & Conquer
+                        </h2>
+                        <p class="text-text-default/90 mb-6 leading-relaxed text-lg">
+                            Debug Cafe was born from a simple truth: no great piece of software was ever written without a strong caffeine buzz. We understand the grind—the late nights, the cryptic error messages, and the absolute euphoria of a successful deployment.
+                        </p>
+                        <p class="text-text-default/90 leading-relaxed text-lg">
+                            Our space is designed to be the perfect environment for both **deep work** and **collaborative brainstorming**. We provide lightning-fast Wi-Fi, ample power outlets, and, most importantly, coffee that's optimized for peak cognitive function. Stop by, find your focus, and let us help you compile and conquer your next project.
+                        </p>
+                    </div>
+                    <!-- Photo of the cafe interior (REPLACED with focused workspace image) -->
+                    <div class="md:w-1/2 mt-12 md:mt-0">
+                        <!-- Placeholder for a desk with warm light and coffee, symbolizing focus -->
+                        <img src="https://placehold.co/800x600/402E2A/F8F4F2?text=Focused+Workspace+%2B+Warm+Light" alt="Cozy cafe table with a laptop, coffee cup, and warm desk lighting, symbolizing a focused coding session." class="rounded-2xl shadow-warm-glow w-full h-auto object-cover border border-accent-warm/30">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NEW SECTION: Community Feedback (Reviews) -->
+        <section id="reviews" class="py-24 bg-bg-primary">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 class="text-5xl font-extrabold text-center text-text-default mb-16 border-b-4 border-accent-warm inline-block pb-2 tracking-wide">
+                    Community Feedback (Reviews)
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Review Card 1 -->
+                    <div class="bg-bg-secondary p-6 rounded-xl shadow-md border-t-4 border-accent-warm">
+                        <p class="text-text-default/80 italic mb-4">"The 404 Espresso is the only thing that fixed my late-night segmentation fault. Pure primary key energy!"</p>
+                        <p class="text-text-default font-semibold">- Jane D., Senior Architect</p>
+                    </div>
+                    <!-- Review Card 2 -->
+                    <div class="bg-bg-secondary p-6 rounded-xl shadow-md border-t-4 border-accent-warm">
+                        <p class="text-text-default/80 italic mb-4">"Absolutely love the ambient lo-fi soundscape. My best debugging sessions happen here. 10/10 Focus."</p>
+                        <p class="text-text-default font-semibold">- Mark S., Freelance Developer</p>
+                    </div>
+                    <!-- Review Card 3 -->
+                    <div class="bg-bg-secondary p-6 rounded-xl shadow-md border-t-4 border-accent-warm">
+                        <p class="text-text-default/80 italic mb-4">"The Merge Conflict Muffin is a delicious metaphor. The sugar rush ensures conflict resolution is quick and clean."</p>
+                        <p class="text-text-default font-semibold">- Alex V., Quality Assurance</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });" class="text-accent-warm hover:text-text-default font-bold transition duration-300 flex items-center justify-center group">
+                        <span class="text-lg">SUBMIT YOUR OWN FEEDBACK</span>
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Debug Protocols (Benefits) -->
+        <section id="protocols" class="bg-bg-primary">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 rounded-2xl shadow-xl overflow-hidden my-24 border border-accent-warm/30">
+                <div class="grid md:grid-cols-2">
+                    
+                    <!-- Left Column: Primary Benefits (Light Background) -->
+                    <div class="p-10 md:p-16 bg-bg-primary text-text-default space-y-10">
+                         <h2 class="text-4xl font-extrabold text-accent-warm mb-8 border-b-2 pb-2">
+                            Deployment Checklist
+                        </h2>
+
+                        <!-- Feature 1: Focus & Energy -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 inline-block p-3 rounded-full protocol-icon-light mt-1">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Enhanced Focus</h3>
+                                <p class="text-text-default/80">
+                                    From deep support to peak focus, energy, and a calm, deliberate workflow for debugging.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Eco-friendly Packaging -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 inline-block p-3 rounded-full protocol-icon-light mt-1">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m-8-4v-10l8-4m0 0v12m0-12L4 7m16 0L12 3m0 0L4 7m8-4v10m0 0l8 4m-8-4l-8 4"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Eco-Friendly Deployments</h3>
+                                <p class="text-text-default/80">
+                                    Our tube packaging is **100% biodegradable** + refillable, minimizing environment overhead.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: Highest Quality Ingredients -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 inline-block p-3 rounded-full protocol-icon-light mt-1">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 0012 21a12.001 12.001 0 008.618-3.04z" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Highest Quality Imports</h3>
+                                <p class="text-text-default/80">
+                                    We use only the finest organic or wild-harvested ingredients for superior performance.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                         <div class="mt-12">
+                             <a href="#menu" class="text-accent-warm hover:text-text-default font-bold transition duration-300 flex items-center group">
+                                <span class="text-lg">LEARN MORE ABOUT OUR SOURCING</span>
+                                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                             </a>
+                         </div>
+                    </div>
+                    
+                    <!-- Right Column: Key Features (Bold Accent Background) -->
+                    <div class="p-10 md:p-16 accent-red-orange space-y-10 flex flex-col justify-center">
+                        <div class="text-center">
+                            <h2 class="text-4xl font-extrabold mb-8 border-b-2 pb-2 inline-block border-white/50">
+                                Core Protocols
+                            </h2>
+                        </div>
+                        
+                        <!-- Feature 1: Optimized Packaging (Best in class) -->
+                        <div class="text-center">
+                            <div class="inline-block p-4 rounded-full protocol-icon-dark mb-3 shadow-md">
+                                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m-8-4v-10l8-4m0 0v12m0-12L4 7m16 0L12 3m0 0L4 7m8-4v10m0 0l8 4m-8-4l-8 4"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">Optimized Packaging</h3>
+                            <p class="text-base text-white/80">
+                                Our packaging is the best and most durable there is, along with double walls for maximum thermal stability.
+                            </p>
+                        </div>
+
+                        <!-- Feature 2: Loyalty Loop (Brand Loyalty) -->
+                        <div class="text-center">
+                            <div class="inline-block p-4 rounded-full protocol-icon-dark mb-3 shadow-md">
+                                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.593L12 0.723l.951 1.87a1 1 0 01.767.551l1.838 3.525a1 1 0 00.916.666h3.844a1 1 0 01.767 1.637l-3.056 2.977a1 1 0 00-.287.818l.72 4.148a1 1 0 01-1.451 1.056L12 17.5l-3.418 1.79a1 1 0 01-1.451-1.056l.72-4.148a1 1 0 00-.287-.818L3.25 7.967a1 1 0 01.767-1.637h3.844a1 1 0 00.916-.666l1.838-3.525a1 1 0 01.767-.551z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">Loyalty Loop</h3>
+                            <p class="text-base text-white/80">
+                                Earn Loop Points and priority from all qualifying purchases. Your loyalty is highly valued.
+                            </p>
+                        </div>
+
+                        <!-- Feature 3: Bulk Deployments (Wholesale) -->
+                        <div class="text-center">
+                            <div class="inline-block p-4 rounded-full protocol-icon-dark mb-3 shadow-md">
+                                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">Bulk Deployments</h3>
+                            <p class="text-base text-white/80">
+                                The streamlined way to bolster your bottom line quickly and easily by fueling your entire team.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END REDESIGNED SECTION -->
+
+        <!-- Contact/Location Section -->
+        <section id="contact" class="py-24 bg-bg-secondary">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 class="text-5xl font-extrabold text-center text-text-default mb-16 border-b-4 border-accent-warm inline-block pb-2 tracking-wide">
+                    Locate Your Server (Contact)
+                </h2>
+                <div class="grid md:grid-cols-3 gap-10 text-center">
+                    <!-- Address Card -->
+                    <div class="bg-bg-secondary p-8 rounded-xl shadow-lg card-hover-effect hover:transform-none hover:shadow-lg">
+                        <h3 class="text-2xl font-semibold text-accent-warm mb-3">Location</h3>
+                        <p class="text-text-default/70 text-lg">101 Mainframe Street, Suite 200</p>
+                        <p class="text-text-default/70 text-lg">Silicon Valley, CA 94043</p>
+                    </div>
+
+                    <!-- Hours Card -->
+                    <div class="bg-bg-secondary p-8 rounded-xl shadow-lg card-hover-effect hover:transform-none hover:shadow-lg">
+                        <h3 class="text-2xl font-semibold text-accent-warm mb-3">Hours</h3>
+                        <p class="text-text-default/70 text-lg">Mon - Fri: 7:00 AM - 9:00 PM</p>
+                        <p class="text-text-default/70 text-lg">Sat - Sun: 9:00 AM - 6:00 PM</p>
+                    </div>
+
+                    <!-- Contact Info Card -->
+                    <div class="bg-bg-secondary p-8 rounded-xl shadow-lg card-hover-effect hover:transform-none hover:shadow-lg">
+                        <h3 class="text-2xl font-semibold text-accent-warm mb-3">Connect</h3>
+                        <p class="text-text-default/70 text-lg">Email: <a href="mailto:support@debugcafe.com" class="text-accent-warm hover:underline transition duration-150">support@debugcafe.com</a></p>
+                        <p class="text-text-default/70 text-lg">Phone: (555) 555-CODE</p>
+                    </div>
+                </div>
+
+                <!-- Simple Contact Form (Wrapper added for particle positioning) -->
+                <div id="feedback-form-container" class="mt-20 max-w-xl mx-auto bg-bg-secondary p-10 rounded-2xl shadow-2xl border border-accent-warm/20 relative overflow-hidden">
+                    
+                    <!-- Celebration Particles Container -->
+                    <div id="celebration-particles" aria-hidden="true"></div>
+                    
+                    <h3 class="text-3xl font-bold text-text-default mb-6">Send Your Feedback</h3>
+                    <form onsubmit="handleFeedbackSubmit(event)">
+                        <input type="text" placeholder="Name" required class="w-full p-4 mb-5 bg-bg-primary border border-accent-warm/50 rounded-lg text-text-default placeholder:text-text-default/50 focus:ring-2 focus:ring-accent-warm focus:border-accent-warm transition duration-200">
+                        <input type="email" placeholder="Email" required class="w-full p-4 mb-5 bg-bg-primary border border-accent-warm/50 rounded-lg text-text-default placeholder:text-text-default/50 focus:ring-2 focus:ring-accent-warm focus:border-accent-warm transition duration-200">
+                        <textarea placeholder="Your Message" rows="5" required class="w-full p-4 mb-6 bg-bg-primary border border-accent-warm/50 rounded-lg text-text-default placeholder:text-text-default/50 focus:ring-2 focus:ring-accent-warm focus:border-accent-warm transition duration-200"></textarea>
+                        <button type="submit" class="w-full bg-accent-warm hover:bg-accent-hover text-white font-bold py-4 rounded-lg text-lg transition duration-300 transform hover:scale-[1.01] shadow-lg">
+                            Submit (Feedback)
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Terms and Policy -->
+        <section id="policy" class="py-16 bg-bg-primary">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                 <h2 class="text-5xl font-extrabold text-center text-text-default mb-12 border-b-4 border-accent-warm inline-block pb-2 tracking-wide">
+                    Terms & Protocol Policy
+                </h2>
+                <div class="grid md:grid-cols-2 gap-10 text-text-default/80">
+                    <div>
+                        <h3 class="text-2xl font-bold text-accent-warm mb-3">Data Integrity and Privacy</h3>
+                        <p class="mb-4">We treat your data (order history, feedback) as highly sensitive variables. We guarantee that your information will never be sold or shared with external third-party servers. All personal data is encrypted and stored locally within our secure system. Your privacy is our priority, ensuring a bug-free experience.</p>
+                        <h3 class="text-2xl font-bold text-accent-warm mb-3 mt-6">Order Cancellation Policy</h3>
+                        <p>Orders can be cancelled without a timeout penalty within 5 minutes of placing your order. After 5 minutes, the build process has started, and cancellation will incur a 50% recompilation fee.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-accent-warm mb-3">Service Guarantees (The Warranty)</h3>
+                        <p class="mb-4">If your coffee build is compiled incorrectly (e.g., wrong parameters or missing dependencies), notify a barista immediately. We guarantee a full recode and delivery of a fixed build at no extra charge. Our warranty does not cover user error (like forgetting sugar).</p>
+                        <h3 class="text-2xl font-bold text-accent-warm mb-3 mt-6">Code of Conduct</h3>
+                        <p>We require all developers and patrons to adhere to a strict Code of Conduct that promotes respectful interaction, quiet focus, and courteous behavior. Disruptive behavior will result in a temporary ban (timeout) from the cafe premises.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bg-secondary py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-text-default/60 text-base">
+            &copy; <span id="year"></span> Debug Cafe. All Rights Reserved. | Optimized for deep work and high performance.
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
