@@ -950,7 +950,8 @@
                 vec2 st = (vUv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0) * 2.0;
                 
                 // Increased movement complexity for a more realistic galaxy flow
-                st.y += u_time * 0.07;st.x += sin(u_time * 0.03) * 0.15; 
+                st.y += u_time * 0.07; 
+                st.x += sin(u_time * 0.03) * 0.15; 
 
                 // Increased FBM scale for finer cosmic dust detail
                 float n = fbm(st * 2.5 + 0.1 * sin(u_time * 0.05));
